@@ -7,7 +7,7 @@ import altair as alt
 
 # Carregando os dados
 d23 = pd.read_csv("Base_Chegadas_2023.csv", sep=";", encoding="cp1252")
-d24 = pd.read_csv("Base_Chegadas_2024_Acum_04_abril.csv", sep=";", encoding="cp1252")
+d24 = pd.read_csv("Base_Chegadas_2024_Acum_05_maio.csv", sep=";", encoding="cp1252")
 
 
 data = pd.concat([d23, d24])
@@ -44,19 +44,19 @@ data_year2 = data[data["ano"] == 2024].groupby("mes")["Chegadas"].sum()
 
 # Plotar o gráfico de linhas com Streamlit native
 
-data_to_plot = pd.DataFrame({"2023": data_year1, "2024": data_year2[:4]})
+data_to_plot = pd.DataFrame({"2023": data_year1, "2024": data_year2[:5]})
 
 # Plotar o gráfico de linhas com Streamlit native
 st.subheader("Comparação de Chegadas por Mês")
 st.line_chart(data_to_plot, color=["#0068c9", "#ff8700"])
 
 data_year2_ = data_year2
-data_year2_[4:] = "-"
+data_year2_[5:] = "-"
 
 
-percentage_variation = ((data_year2[:4] - data_year1[:4]) / data_year1) * 100
+percentage_variation = ((data_year2[:5] - data_year1[:5]) / data_year1) * 100
 
-percentage_variation[4:13] = "-"
+percentage_variation[5:13] = "-"
 
 # st.subheader("Tabela de Chegadas por Mês")
 table_data = {
@@ -67,8 +67,8 @@ table_data = {
 df_table = pd.DataFrame(table_data)
 st.dataframe(df_table.transpose(), height=150, use_container_width=True)
 
-tri1 = sum(data_year1[:4])
-tri2 = sum(data_year2[:4])
+tri1 = sum(data_year1[:5])
+tri2 = sum(data_year2[:5])
 
 var = round(((tri2 - tri1) / tri1) * 100, 2)
 
