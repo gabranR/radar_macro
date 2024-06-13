@@ -73,7 +73,7 @@ tri2 = sum(data_year2[:5])
 var = round(((tri2 - tri1) / tri1) * 100, 2)
 
 st.write(
-    f"Houve um aumento de **{var}%** do número de chegadas de turistas internacionais no primeiro quadrimestre de 2024 comparado ao mesmo período de 2023."
+    f"Houve um aumento de **{var}%** no número de chegadas de turistas internacionais nos primeiros cinco meses de 2024 comparado ao mesmo período de 2023."
 )
 
 st.divider()
