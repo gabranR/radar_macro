@@ -58,7 +58,10 @@ percentage_variation = ((data_year2[:8] - data_year1[:8]) / data_year1) * 100
 percentage_variation = percentage_variation.astype("float").round(2)
 percentage_variation[8:13] = "-"
 
-# st.subheader("Tabela de Chegadas por Mês")
+st.write(
+    "##### Chegadas de Turistas Internacionais por mês e variação conforme mesmo mês do ano anterior"
+)
+
 table_data = {
     str(2023): data_year1,
     str(2024): data_year2_,
