@@ -7,7 +7,7 @@ import altair as alt
 
 # Carregando os dados
 d23 = pd.read_csv("Base_Chegadas_2023.csv", sep=";", encoding="cp1252")
-d24 = pd.read_csv("Base_Chegadas_2024_Acum_08_agosto.csv", sep=";", encoding="cp1252")
+d24 = pd.read_csv("Base_Chegadas_2024_Acum_10_outubro.csv", sep=";", encoding="cp1252")
 
 
 data = pd.concat([d23, d24])
@@ -44,19 +44,19 @@ data_year2 = data[data["ano"] == 2024].groupby("mes")["Chegadas"].sum()
 
 # Plotar o gráfico de linhas com Streamlit native
 
-data_to_plot = pd.DataFrame({"2023": data_year1, "2024": data_year2[:8]})
+data_to_plot = pd.DataFrame({"2023": data_year1, "2024": data_year2[:10]})
 
 # Plotar o gráfico de linhas com Streamlit native
 st.subheader("Comparação de Chegadas por Mês")
 st.line_chart(data_to_plot, color=["#0068c9", "#ff8700"])
 
 data_year2_ = data_year2
-data_year2_[8:] = "-"
+data_year2_[10:] = "-"
 
 
-percentage_variation = ((data_year2[:8] - data_year1[:8]) / data_year1) * 100
+percentage_variation = ((data_year2[:10] - data_year1[:10]) / data_year1) * 100
 percentage_variation = percentage_variation.astype("float").round(2)
-percentage_variation[8:13] = "-"
+percentage_variation[10:13] = "-"
 
 st.write(
     "##### Chegadas de Turistas Internacionais por mês e variação conforme mesmo mês do ano anterior"
@@ -70,8 +70,8 @@ table_data = {
 df_table = pd.DataFrame(table_data)
 st.dataframe(df_table.transpose(), height=150, use_container_width=True)
 
-tri1 = sum(data_year1[:8])
-tri2 = sum(data_year2[:8])
+tri1 = sum(data_year1[:10])
+tri2 = sum(data_year2[:10])
 
 var = round(((tri2 - tri1) / tri1) * 100, 2)
 
